@@ -1,0 +1,260 @@
+:root 
+{/* color */
+--white-color:#f4f4f4;
+--dark-green-color:#00701a;
+--light-pink-color: #f48fb1;
+ --milk-pink-color:   #ff77a9;
+
+
+/* size */
+--small-size:12px;
+--big-size:20px;
+/* font */
+--font-large:24px;
+--font-small:16px;
+--font-micro:8px;
+/* margim */
+--small-margin:10px;
+--large-margin:96px;
+}
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family: 'Noto Sans JP', sans-serif;
+list-style: none;
+text-decoration: none;
+}
+/* header */
+header{
+    background-color: var(--dark-green-color);
+
+}
+header .head{
+    display: flex;
+    justify-content: space-around;
+    height: 122px;
+    
+}
+header .head .img{
+    display: flex;
+    align-items: center;
+    height: 144px;
+}
+header ul{
+    display: flex;
+    justify-content: space-evenly;
+    width: 526px;
+    align-items: center;
+}
+header ul li{
+    padding: 59px 10px 34px 10px;
+    font-size: 18px;
+    
+}
+header #address{
+    display: scroll;
+    position: fixed;
+    bottom: 30px;
+    height: 5px;
+
+}
+
+header ul li:hover{
+    border-bottom: 2px solid var(--white-color);
+}
+header ul li:nth-of-type(3){
+    border-bottom: 2px solid var(--white-color);
+
+}
+header a:not(.white){
+    color: var(--light-pink-color);
+}
+header .white{
+    color: var(--white-color);
+
+}
+
+header .btn{
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    height: 133px;
+    
+}
+header .btn a{
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+header ul li a:hover{
+    color: var(--white-color);    
+}
+header ul li{
+    border-bottom-color: var(--white-color);
+    border-width:2px ;
+}
+/* section */
+section{
+    margin: 96px 96px 60px 96px; 
+    display: flex;
+}
+section .one{
+    width: 70%;
+    color:#616161;
+    line-height: 2;
+}
+section .one h1{
+    font-size: 46px;
+    color: #003d00    ;
+    margin-bottom: 40px;
+
+}
+section .one h2{
+    margin-bottom: 10px;
+}
+section .two{
+    background-color: var(--light-pink-color);
+    width: 318px;
+    color: var(--dark-green-color);
+    height: 429px;
+    border-radius: 8px;
+    margin-left: 36px;
+}
+section .two .head{
+    padding: 33px 26px;
+    border-bottom: 1px solid grey;
+}
+section .two .head img{
+    margin-right: 8px;
+}
+section .two .body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 33px 26px;
+}
+section .two .body .add{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+section .two .body .des{
+    line-height: 2;
+    margin-bottom: 8px;
+}
+section .two .body label{
+    font-size: 8px;
+    display: block;
+}
+section .two .body input{
+    width: 261px;
+    height: 50px;
+}
+section .two .body input[type="submit"]{
+    background-color: var(--milk-pink-color);
+    color: var(--dark-green-color);
+    border: hidden;
+
+}
+ .bar{
+    background-color: var(--light-pink-color);
+    display: flex;
+    flex-direction: column;
+    width: 14px;
+    height: 100px;
+    padding: 20px;
+    justify-content: space-between;
+    border-radius: 8px;
+    position: sticky;
+    left: 45px;
+    top: 10px;
+    align-items: center;
+    left: 95%;
+    top: 50%;
+}
+/* address */
+.address .pink{
+
+    background-color: var(--light-pink-color);
+    width: 75%;
+    padding: 30px;
+    margin-left: 96px;
+    padding: 100px 50px;
+}
+.address .pink .logo{
+  width: 227pX; 
+  margin-bottom: 30px;  
+}
+
+address .pink a .zomow{
+    color: var(--dark-green-color);
+    font-size: 15px;
+
+}
+ul.des {
+    font-size: 40px;
+    line-height: 1.3;
+}
+.address .greenleaf{
+    position: relative;
+    bottom:405px;
+    left: 19%;
+}
+/* address */
+address{
+    background-color:var(--dark-green-color) ;
+    width: 400px;
+    color: var(--light-pink-color);
+    position: relative;
+    left: 65%;
+    bottom: 696px;
+}
+address img{
+    margin-right: 5px;
+}
+
+address .call{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding: 20px;
+}
+address .message{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+/* footer */
+footer{
+     color: var(--dark-green-color);
+    margin-left: 96px;
+
+}
+footer .menu{
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+
+
+
+}
+footer .opt{
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+}
+footer .opt a{
+    color: var(--dark-green-color);
+}
+footer .end{
+    display: flex;
+    align-items: center;
+    margin-right: 200px;
+}
+
+footer .end .design{
+    margin-right: 3px;
+}

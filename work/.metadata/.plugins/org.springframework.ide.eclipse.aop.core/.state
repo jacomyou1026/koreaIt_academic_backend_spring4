@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="Ex_1230_SpringDI"/>
+<aop-project name="Ex_work_1230"/>
+<aop-project name="Ex_1231_SpringMVC"/>
+<aop-project name="VamPa_MySQL"/>
+<aop-project name="Ex_0103_SpringDB"/>
+<aop-project name="Ex_1231_SpringParam"/>
+<aop-project name="ex_1230_work"/>
+<aop-project name="Board"/>
+<aop-project name="bookkk"/>
+<aop-project name="Ex_0103_Dept"/>
+<aop-project name="Ex_Member"/>
+<aop-project name="VamPa"/>
+<aop-project name="Ex_0117_API"/>
+<aop-project name="Ex_0111_Visit"/>
+<aop-project name="Ex_0117_SpringBoard"/>
+<aop-project name="Ex_1229_SpringFirst"/>
+</aop-reference-model>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="listMapper">
+   
+
+ 
+ 
+ 
+ 		<!--  검색 동적 sql -->
+	  	<sql id="search">
+			<if test="condition == 'subject'.toString()">AND subject LIKE '%' || #{keyword} || '%'</if>
+			<if test="condition == 'publisher'.toString()">AND publisher LIKE '%' || #{keyword} || '%'</if>
+			<if test="condition == 'author'.toString()">AND author LIKE '%' || #{keyword} || '%'</if>
+		</sql>
+	  
+	  
+	  
+	  
+	  <!-- 1차 분류 리스트 -->
+                  <select id="list_1"  resultType="com.spring.vo.BookVO" >
+       
+  	   select*from(select ROW_NUMBER() OVER(ORDER BY bookNum DESC) AS RNUM, b.bookNum, b.subject, b.author,b.img,b.publishDate,b.publisher,b.intro,b.stock,b.price,c.categoryNum,c.cateName,c.cateParent
+    from book b inner join category c
+        on  b.categoryNum = c.categoryNum
+          	where  c.cateParent = #{cateParent})	
+                    		WHERE RNUM BETWEEN #{paging.rowStart} AND #{paging.rowEnd}
+		ORDER BY bookNum DESC       
+                 
+    </select> 
+        
+        <!-- 2차분류 리스트 -->
+            <select id="list_2"  resultType="com.spring.vo.BookVO" >
+     select * from (select ROW_NUMBER() OVER(ORDER BY bookNum DESC) AS RNUM,b.bookNum, b.subject, b.author,b.img,b.publishDate,b.publisher,b.intro,b.stock,b.price,c.categoryNum,c.cateName,c.cateParent
+    from book b inner join category c
+        on  b.categoryNum = c.categoryNum
+        where b.categoryNum = #{categoryNum})	
+        		WHERE RNUM BETWEEN #{paging.rowStart} AND #{paging.rowEnd}
+		ORDER BY bookNum DESC
+		
+    </select>  
+    
+    <!-- 국내도서리스트 -->
+	<select id ="listIncountry"  resultType="com.spring.vo.BookVO" >
+			<![CDATA[
+			select * from ( select ROW_NUMBER() OVER(ORDER BY bookNum DESC) AS RNUM, bookNum,subject,author,publishDate,publisher,price,intro,stock,img,categoryNum,
+            (select cateName from category where book.categoryNum = category.categoryNum) cateName,
+            (select cateParent from category where book.categoryNum = category.categoryNum) cateParent
+            from book where categoryNum >= 100000 and categoryNum < 200000 )	
+            		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY bookNum DESC
+		]]>
+            
+	</select>
+	<!-- 외국도서 리스트 -->
+	<select id ="listOutcountry"  resultType="com.spring.vo.BookVO" >
+			<![CDATA[
+			select * from ( select ROW_NUMBER() OVER(ORDER BY bookNum DESC) AS RNUM, bookNum,subject,author,publishDate,publisher,price,intro,stock,img,categoryNum,
+            (select cateName from category where book.categoryNum = category.categoryNum) cateName,
+            (select cateParent from category where book.categoryNum = category.categoryNum) cateParent
+            from book where categoryNum >= 200000 and categoryNum < 300000 )	
+            		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY bookNum DESC
+		]]>
+            
+	</select>	
+	
+	
+	
+	
+	
+	
+   
+   
+   	<!--  국내도서 개수 -->
+   	<select id="IncountryCount" resultType="int" >
+   				<![CDATA[
+        		SELECT COUNT (bookNum) FROM book where categoryNum >= 100000 and categoryNum < 200000  ]]> 
+	</select>
+	<!--  외국도서 개수 -->
+   	<select id="OutcountryCount" resultType="int" >
+   				<![CDATA[
+        		SELECT COUNT (bookNum) FROM book where categoryNum >= 200000 and categoryNum < 300000  ]]> 
+	</select>
+
+
+
+ 	<!--  1차분류 개수 -->
+   	<select id="primaryClassification" resultType="int">
+            	   select COUNT (bookNum) from(select b.bookNum, b.subject, b.author,b.img,b.publishDate,b.publisher,b.intro,b.stock,b.price,c.categoryNum,c.cateName,c.cateParent
+    from book b inner join category c
+        on  b.categoryNum = c.categoryNum
+          	where  c.cateParent = #{cateParent} )	
+  
+	</select>
+	 <!--  2차분류 개수 -->
+	   	<select id="secondaryClassification" resultType="int" >
+          	   select COUNT (bookNum) from(select b.bookNum, b.subject, b.author,b.img,b.publishDate,b.publisher,b.intro,b.stock,b.price,c.categoryNum,c.cateName,c.cateParent
+    from book b inner join category c
+        on  b.categoryNum = c.categoryNum
+        where b.categoryNum = #{categoryNum} )
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	<!--  전체 책개수 -->
+	
+	   	<select id="CountAll" resultType="int" >
+   				<![CDATA[
+        		SELECT COUNT (bookNum) FROM book where categoryNum >= 100000 and categoryNum < 900000  ]]> <include refid="search"></include> 	
+	</select>
+	
+	<!--  전체 책 리스트 -->
+	   <select id="ListAll"  resultType="com.spring.vo.BookVO" >
+			<![CDATA[
+			select * from ( select ROW_NUMBER() OVER(ORDER BY bookNum DESC) AS RNUM, bookNum,subject,author,publishDate,publisher,price,intro,stock,img,categoryNum,
+            (select cateName from category where book.categoryNum = category.categoryNum) cateName,
+            (select cateParent from category where book.categoryNum = category.categoryNum) cateParent
+            from book where categoryNum >= 100000 and categoryNum < 900000 ]]><include refid="search"></include> )	
+            		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY bookNum DESC     
+                 
+    </select> 
+    
+    
+    
+    
+	
+	   	<!-- 테스트용 카테고리 리스트 -->
+  	<select id="cateList" resultType="com.spring.vo.CategoryVO">
+  	
+  		select * from category order by categoryNum
+  	
+  	</select>
+ 
+   	 <!-- 테스트용 책 등록   -->
+  	<insert id="bookEnroll">
+  	
+  		insert into book(bookNum, subject, author, publishDate, publisher, price, intro, stock, img, categoryNum)
+		values(book_seq.NEXTVAL,#{subject}, #{author},#{publishDate},#{publisher},#{price},#{intro},#{stock},#{img},#{categoryNum})
+
+  	</insert>
+	
+
+
+   
+</mapper>

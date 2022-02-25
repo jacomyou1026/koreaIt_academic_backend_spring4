@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="parchase">
+
+	<!-- 사용자 목록 -->
+	<select id="book_purchase_list" resultType="vo.BookPurchaseVO">
+		select * from
+		book_purchase where id ='jac'
+	</select>
+	<select id="order_list1" resultType="vo.OrderVO" parameterType="String">
+		SELECT * FROM SHOPPING_CART sc JOIN BOOK_PURCHASE bp ON sc.SHOPNUM =
+		bp.SHOPNUM
+		JOIN book b ON sc.BOOKNUM =b.BOOKNUM
+		JOIN BOOK_USER bu ON sc.ID =bu.ID where sc.id= #{id}
+	</select>
+	
+
+	<!--책테이블 +shopping cart 안쓸거-->
+	<select id="order_list" resultType="vo.OrderVO" parameterType="String">
+		SELECT * FROM SHOPPING_CART sc JOIN book b ON sc.BOOKNUM =b.BOOKNUM JOIN BOOK_USER bu ON sc.ID =bu.ID where  sc.id= #{id} 
+	</select>
+	
+	<!--책테이블 +shopping cart+purchaselist-->
+	<select id="purchaselist" resultType="vo.OrderVO" parameterType="String">
+		SELECT * FROM SHOPPING_CART sc JOIN book b ON sc.BOOKNUM =b.BOOKNUM JOIN BOOK_USER bu ON sc.ID =bu.ID JOIN BOOK_PURCHASE bp ON bp.id=bp.ID where  sc.id= #{id} 
+	</select>
+	
+	<!-- 바로구매 -->
+	<insert id="inserpurchase" parameterType="vo.OrderVO">
+		INSERT INTO BOOK_PURCHASE(PURCHASENUM,ID,REGDATE,SHOPNUM,BOOKCNT,BOOKNUM) values(purchase_seq.nextVal,#{id},sysdate,#{shopnum},#{bookCnt},#{bookNum})
+	</insert>
+	
+	<!-- BOOK_USER update  -->
+	<insert id="updatedelivery" parameterType="vo.updateUserVO">
+		INSERT INTO BOOK_USER  valuse name = #{updatename}, tel1=#{updatetel1}, TEL2 =#{updatetel2},TEL3 =#{updatetel3}, POSTCODE =#{updatepostcode},ADDRESS1 =#{updateaddress1}, ADDRESS2 =#{updateaddress2} WHERE id = #{id}
+	</insert>
+	
+	
+	<delete id="delshoppingCart" parameterType="int">
+		 DELETE FROM SHOPPING_CART sc WHERE SHOPNUM = #{shopnum}
+	</delete>
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 구매 -->
+	<!-- 총합 (책 전체) -->
+	<select id="totalprice" resultType="int">
+		SELECT SUM((bp.BOOKCNT * PRICE))
+		 FROM BOOK b JOIN BOOK_PURCHASE bp ON b.BOOKNUM =bp.BOOKNUM
+		JOIN BOOK_USER bu ON bu.ID =bp.ID
+	</select>
+
+
+	<!-- 출고 예정 -->
+	<select id="releaseBook" resultType="String">
+	 	SELECT TO_CHAR(REGDATE +2,'RRRR-MM-DD') FROM BOOK_PURCHASE 
+	 </select> 
+		
+
+	<!--최종 결제 금액(배송비 제외) -->
+	<!--수정요함  -->
+	<select id="finalprice" resultType="int">
+		
+	SELECT SUM((bp.BOOKCNT * PRICE))-SHOPPOINT FROM BOOK
+		b JOIN BOOK_PURCHASE bp
+		ON b.BOOKNUM =bp.BOOKNUM JOIN BOOK_USER bu ON bu.ID =bp.ID GROUP BY
+		SHOPPOINT
+	</select>
+	
+	
+	<!--적립 -->
+	<select id="savepoint" resultType="int">
+	SELECT (SUM((bp.BOOKCNT * PRICE))-SHOPPOINT)*0.1 FROM BOOK
+		b JOIN BOOK_PURCHASE bp
+		ON b.BOOKNUM =bp.BOOKNUM JOIN BOOK_USER bu ON bu.ID =bp.ID GROUP BY
+		SHOPPOINT
+	</select>
+
+	
+	
+	<!-- 주문 수량 -->
+	<select id="totalcnt" resultType="int">
+		SELECT COUNT(*) FROM
+		BOOK_PURCHASE bp where id = 'jac'
+	</select>
+	
+	<!-- 사용자 point update -->
+	<update id="UpdateShoppingPoing" parameterType="int">
+		update BOOK_USER set shoppoint = #{savePoint} where id = 'jac'
+	</update>
+	
+		
+	<!-- 사용자 point update -->
+	<update id="UpdateMoney" parameterType="int">
+		update BOOK_USER set money = #{update_money} where id = 'jac'
+	</update>	
+	
+	
+	<delete id="delgoshoppurchse" parameterType="vo.OrderVO">
+		 DELETE FROM BOOK_PURCHASE  
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

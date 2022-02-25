@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="parchase">
+
+
+	<!--책테이블 +shopping cart -->
+	<select id="order_list1" resultType="vo.OrderVO" parameterType="String">
+		SELECT * FROM SHOPPING_CART sc JOIN book b ON sc.BOOKNUM =b.BOOKNUM JOIN BOOK_USER bu ON sc.ID =bu.ID where  sc.id= #{id} 
+	</select>
+	
+	<!--책테이블 +BOOK_PURCHASE+BOOK_USER-->
+	<select id="purchaselist" resultType="vo.OrderVO" parameterType="String">
+			SELECT * FROM BOOK_PURCHASE bp JOIN BOOK b ON bp.BOOKNUM =b.BOOKNUM JOIN BOOK_USER bu  ON bp.ID =bu.ID where bu.id= #{id}
+			 
+	</select>
+	
+	<update id="bigshoppingpoint" parameterType="vo.OrderVO">
+		update BOOK_USER
+		set shoppoint = #{bigshop} where id = #{id}
+	</update>
+	
+	
+	<!-- 바로구매 사용안함 -->
+	<insert id="inserpurchase" parameterType="vo.OrderVO">
+		INSERT INTO BOOK_PURCHASE(PURCHASENUM,ID,REGDATE,SHOPNUM,BOOKCNT,BOOKNUM) values(purchase_seq.nextVal,#{id},sysdate,#{shopnum},#{bookCnt},#{bookNum})
+	</insert>
+	
+	<!-- delivery update 배송 후 -->
+	<insert id="updatedeliverys" parameterType="vo.DeliveryVO">
+			INSERT INTO DELIVERY VALUES(delivery_seq.nextVal,#{id},#{bookNum},#{bookCnt},#{price},#{deliverypostcode},#{deliveryaddress1},#{deliveryaddress2},#{deliverytel1},#{deliverytel2},#{deliverytel3},sysdate,#{deliveryname})
+	</insert>
+	
+	<!-- delivery update  배송 전-->
+	<insert id="delivery" parameterType="vo.DeliveryVO">
+			INSERT INTO DELIVERY VALUES(delivery_seq.nextVal,#{id},#{bookNum},#{bookCnt},#{price},#{deliverypostcode},#{deliveryaddress1},#{deliveryaddress2},#{deliverytel1},#{deliverytel2},#{deliverytel3},sysdate,#{deliveryname})
+	</insert>
+	
+	<!--장바구니 삭제  -->
+	<delete id="delshoppingCart" parameterType="int">
+		 DELETE FROM SHOPPING_CART sc WHERE sc.SHOPNUM = #{shopnum}
+	</delete>
+	
+	<!--purchase삭제  -->
+	<delete id="delgoshoppurchse" parameterType="String">
+		 DELETE FROM BOOK_PURCHASE where id= #{id}  
+	</delete>	
+	
+	
+	<!-- 사용자 point update 구현해야함-->
+	<update id="UpdateMoney" parameterType="vo.OrderVO">
+		update BOOK_USER set money = #{update_money} where id= #{id} 
+	</update>	
+	
+	<!-- 배송지 변경후 purchaseTable의 deliveryNum 1증가 시킴으로써 -->
+	<!-- 기본 배송지인지 변경된 배송지인지 구분 & delivery -->
+	<update id="updatedeliverysep" parameterType="String">
+		update BOOK_PURCHASE set deliverysep=1 where id= #{id}  
+	</update>
+	
+	<!--deliverysep =0으로 초기화함 -->
+	<update id="initdeliverysep" parameterType="String">
+		UPDATE BOOK_PURCHASE SET deliverysep =0 where id= #{id}  
+	</update>
+	
+	
+	<!-- 사용자 point update -->
+	<update id="UpdateShoppingPoing" parameterType="vo.OrderVO">
+		update BOOK_USER set shoppoint = #{savePoint} where id = #{id}
+	</update>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+CREATE TABLE book (
+   bookNum int NOT NULL,
+   subject VARCHAR2(30) NOT NULL,
+   author VARCHAR2(30) NOT NULL,
+   publishDate date NULL,
+   publisher VARCHAR2(30) NULL,
+   price int NOT NULL,
+   intro clob NULL,
+   stock int NOT NULL,
+   img VARCHAR2(100) NULL,
+   categoryNum int NOT NULL,
+   FOREIGN KEY (categoryNum) REFERENCES category (categoryNum),
+   primary key(bookNum)
+);

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="웹3 프젝/bookkk/src/main/java"/>
+	<classpathentry kind="src" path="웹3 프젝/bookkk/src/test/java"/>
+	<classpathentry kind="src" path="Blog_Project-master/VamPa_MySQL/src/main/java"/>
+	<classpathentry kind="src" path="Blog_Project-master/VamPa_MySQL/src/test/java"/>
+	<classpathentry kind="src" path="Blog_Project-master/VamPa/src/main/java"/>
+	<classpathentry kind="src" path="Blog_Project-master/VamPa/src/test/java"/>
+	<classpathentry kind="src" path="bookStore_project/src/main/java"/>
+	<classpathentry kind="src" path="bookStore_project/src/test/java"/>
+	<classpathentry kind="src" path="Ex_0103_Dept/src/main/java"/>
+	<classpathentry kind="src" path="Ex_0103_SpringDB/src/main/java"/>
+	<classpathentry kind="src" path="Ex_0111_Visit/src/main/java"/>
+	<classpathentry kind="src" path="Ex_0117_API/src/main/java"/>
+	<classpathentry kind="src" path="Ex_0117_SpringBoard/src/main/java"/>
+	<classpathentry kind="src" path="Ex_1229_SpringFirst/src/main/java"/>
+	<classpathentry kind="src" path="Ex_1230_SpringDI/src/main/java"/>
+	<classpathentry kind="src" path="ex_1230_work/src/main/java"/>
+	<classpathentry kind="src" path="Ex_1231_SpringMVC/src/main/java"/>
+	<classpathentry kind="src" path="Ex_1231_SpringParam/src/main/java"/>
+	<classpathentry kind="src" path="Ex_Member/src/main/java"/>
+	<classpathentry kind="src" path="Ex_work_1230/src/main/java"/>
+	<classpathentry kind="src" path="SpringBoard-master/Board/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="output" path="Blog_Project-master/VamPa/target/classes"/>
+</classpath>

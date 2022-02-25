@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 스프링에서 객체를 생성하기 위한 생성파일 -->
+	
+	<!-- PersonVO p1 =new PersonVO();  -->
+	<!--  p1.setName("일길도");
+	-->
+	<!-- 스프링에서 생성된 객체는 스프링빈이라고 부른다 -->
+	<bean id ="p1" class ="vo.PersonVO">
+			<property name="name" value="스프링  일기동"/>
+			<property name="age" value= "33"/>
+			<property name="tel" value="010-3333-333"></property>
+			<!-- 이와 같이 property속성을 사용하여 setter로 값을 넣어주는 방식을 SI(setter injection)-->
+	</bean>
+	
+	<!--PersonVO p2 = new PersonVO("이길동",22,"010-2222-2222");
+	  -->
+	  <bean id ="p2" class="vo.PersonVO" >
+			  <constructor-arg value="스프링 이길동">
+			  </constructor-arg>
+			  <constructor-arg value="32">
+			  </constructor-arg>
+			  <constructor-arg value="010-3333-3333">
+			  </constructor-arg>
+			  
+			  <!--  이와같이 constructor를 사용하여 생성자에 값을 넣어주는 방식을 CI(construcotr injection)
+			  생성자 인젝션이라고 한다.-->
+	  </bean>
+	  
+	  <!--  root context에서 생성된 스프린빈 객체는 기본적으로 싱글톤으로 생성
+	  		DAO등을 생성할 떄 싱글톤 코드를 따로 작성할 필요가 없으므로 매우 유리  -->
+</beans>

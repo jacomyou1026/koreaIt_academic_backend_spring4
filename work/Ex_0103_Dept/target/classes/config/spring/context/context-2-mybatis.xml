@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	
+	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds"></property>		<!-- context-1 에 있는 ds를 가진 id 속성을 dataSource bean 에 넣는다 -->
+		<property name="configLocation" value="classpath:config/mybatis/mybatis-config.xml"></property>
+	</bean>
+	
+	<!-- SqlSession 만들기 -->
+	<bean id="sqlSessionBean" class="org.mybatis.spring.SqlSessionTemplate">		<!-- SqlSessionTemplate sqlSessionBean = new SqlSessionTemplate(factoryBean); -->
+		<constructor-arg ref="factoryBean"></constructor-arg>		<!-- SqlSession 에서 data 를 가져오는게 편리하다 -->
+	</bean>
+		
+</beans>

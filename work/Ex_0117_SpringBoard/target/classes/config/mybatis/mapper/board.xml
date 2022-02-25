@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="b">
+
+	<!-- 게시글 전체목록 조회 -->
+	<select id="board_list" resultType="board" parameterType="java.util.HashMap">
+		select * from
+		( select RANK() OVER( order by ref DESC, step ASC ) no, b.* 
+   		from (select * from BOARD) b )
+		where no between #{s} and #{e}
+	</select>
+
+	<!-- 새 글 등록(댓글X) -->
+	<insert id="board_insert" parameterType="board">
+		insert into BOARD values(
+			seq_board_idx.nextVal, 
+			#{name}, 
+			#{subject}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			0, 
+			seq_board_idx.currVal,
+			0, 
+			0, 
+			0
+		)
+	</insert>
+	
+	<!-- 파라미터로 넘어온 idx에 해당하는 게시글 한 건 조회 -->
+	<select id="board_one" resultType="board" parameterType="int">
+		select * from board where idx=#{idx}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="update_readhit" parameterType="int">
+		<!-- idx위치에 해당하는 readhit값을 1씩 증가 -->
+		update board set readhit = readhit + 1
+		where idx=#{idx}
+	</update>
+	
+	<!-- 댓글처리를 위한 step + 1 -->
+	<update id="update_step" parameterType="board">
+		update board set step = step + 1
+		where ref=#{ref} and step > #{step}
+	</update>
+	
+	<!-- 댓글추가 -->
+	<insert id="board_reply" parameterType="board">
+		insert into BOARD values(
+			seq_board_idx.nextVal, 
+			#{name}, 
+			#{subject}, 
+			#{content}, 
+			#{pwd}, 
+			#{ip}, 
+			sysdate, 
+			0, 
+			#{ref},
+			#{step}, 
+			#{depth}, 
+			0
+		)
+	</insert>
+	
+	<!-- 게시글 삭제(된 것 처럼 업데이트) -->
+	<update id="del_update" parameterType="board">
+		update BOARD set
+		subject=#{subject}, 
+		name=#{name}, 
+		del_info=-1 
+		where idx=#{idx}
+	</update>
+	
+	<!-- 전체 게시물의 수 -->
+	<select id="board_count" resultType="int">
+		select COUNT(*) from board
+	</select>
+	
+</mapper>

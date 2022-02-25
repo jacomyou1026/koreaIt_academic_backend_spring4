@@ -1,0 +1,3 @@
+#Tomcat publish data
+#Fri Feb 25 15:30:58 KST 2022
+org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\jacom\\.m2\\repository\\org\\springframework\\spring-web\\4.3.8.RELEASE\\spring-web-4.3.8.RELEASE.jar=WEB-INF/lib/spring-web-4.3.8.RELEASE.jar

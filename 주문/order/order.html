@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+
+<link rel="stylesheet" type="text/css"
+	href="css/order.css">
+<!-- Ajax를 위한 httpRequest.js참조 -->
+
+<script
+	src="js/httpRequest.js"></script>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+ function update(f){
+	 
+	 f.submit();
+ }
+ 
+</script>
+</head>
+<body>
+
+	<div class="mainbox">
+		<header>
+			<img
+				src="https://simage.kyobobook.co.kr/ink/images/cartlist/bg_orderstep_3.gif"
+				alt="">
+			<div class="head">
+				<ul class="heand_ul">
+					<!-- 이름추가 -->
+					<li>${list.id}님의통장현황</li>
+					<li>캐시 : ${list.money }</li>
+					<!-- 포인트 추가 -->
+					<li>통합포인트 :${list.shop_point } P</li>
+
+
+				</ul>
+			</div>
+
+		</header>
+
+		<div class="flex">
+			<main>
+				<div class="order_info">
+					<ul class="owner">
+						<li>주문자</li>
+						<!--주문자| 번호 |이메일 등록  -->
+						<li>${list.name }</li>
+						<li>${list.tel }</li>
+						<li>${list.email }</li>
+					</ul>
+
+					</span>
+
+				</div>
+				<div class="info">
+					<h2>배송정보</h2>
+					<div class="de_info">
+						<!-- 사용자 이름/ 주소 넣기 -->
+						<div>
+							<span class="blue">[최근 배송지]</span> <span>${list.name }</span>
+							<!-- 이름 -->
+							<input class="update" type="button" value="배송지 변경"
+								onclick="update(this.form);">
+						</div>
+
+						<!--우편번호와 주소 넣기  -->
+						<div style="font-size: 11px;">(${list.postcode })
+							(${list.address1} ${list.address2} ${list.address3 })</div>
+						<!--휴대번호넣기  -->
+						<div>
+							<span>${list.tel }</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- 주문상품 개수넣기 -->
+				<div class="order_item">
+					<h2>주문상품(몇개)</h2>
+					<div>
+						<table>
+							<tr class="table_head">
+								<td>상품정보</td>
+								<td>판매가</td>
+								<td>배송/판매자</td>
+							</tr>
+
+							<!--상품이미지 상품정보 판매가 수량 넣기  -->
+							<tr>
+								<td class="td_one"><img src="" alt=""> <!-- image -->
+									<span>상품이름</span> <!--상품이름  --></td>
+
+								<td><span class="table_border">0000원 </span> 수량 x개<br>
+									<!-- 판매가 수량 넣기--> 총 원 넣기<br> 포인트 넣기<!--  포인트--></td>
+
+								<td>교보문고배송</td>
+							</tr>
+							</div>
+						</table>
+					</div>
+
+					<div class="discount">
+						<h2>할인/적립</h2>
+						<table>
+							<tr>
+								<td class="total_point_" style="padding: 23px; width: 25%;">통합포인트</td>
+								<td style="border-top: 1px solid;">
+									<div style="font-size: 11px;">${list.shop_point }</div> 
+                                    <input type="text"
+									style="width: 20%; height: 20px;"> <span>원</span> <!-- 다 넣기 설정 -->
+									<input class="all_use" type="button" value="모두사용" onclick="">
+
+								</td>
+							</tr>
+							<tr>
+								<td class="save_money">적립</td>
+								<td style="border-bottom: 1px solid; width: 24px;">
+									<!-- 총 판매금액의 10% 적립 포인트 -->
+									<div style="display: flex; flex-direction: column;">
+										<span>총 판매금액의 10% 적립됩니다.</span>
+										<!--총판맥금액쓰기  -->
+										<span>222원 </span>
+									</div>
+								</td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+				<div>
+			</main>
+
+			<aside>
+				<div class="d">
+					<div class="d_blue">
+						<div class="date">배송일정</div>
+						<span class="d_location">배송지 - </span>
+						<!-- 배송지 넣기 -->
+						<span> </span>
+						<!-- sysdate를 이용하여 계산 -->
+						<div>
+							<div class="relaese">출고예정</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="price_tag">
+						<!-- 가격설정 -->
+						<div class="one">
+							<span>상품금액</span> <span>배송비</span> <span>할인금액</span>
+						</div>
+						<div class="two">
+
+							<span class="mon">111원</span>
+							<!-- 상품금액넣기-->
+							<span class="mon">2222원</span>
+							<!-- 배송비넣기 -->
+							<span class="mon">1111원</span>
+							<!-- 할인금액넣기-->
+						</div>
+					</div>
+					<div class="final_pr">
+						<span style="color: red;">최종 결제금액</span> <span
+							style="color: red; font-weight: bold; font-size: 22px;">8000원</span>
+						<!-- 최종금액넣기 -->
+					</div>
+					<div class="totals">
+						<div class="totals_points">
+							<span class="total_point">적립예정 통합포인트</span> <span
+								style="font-size: 17px; font-weight: bold;">0원P</span>
+						</div>
+						<!-- 적립넣기 -->
+						<div>
+							<div class="contents">쿠폰,통합포인트 사용시 주문완료 후 적립예정포인트가 변동될 수
+								있습니다.</div>
+						</div>
+					</div>
+					<div class="agree">
+						<input style="padding: 5px 12px;" type="button"> <span>주문내역확인동의(필수)</span>
+						<!-- 주문내역필수상세 나오기 -->
+						<input type="button" onclick="">
+					</div>
+
+					<div class="btn">
+						<input class="pay" style="padding: 10px;" type="button"
+							value="결제하기"> <input class="shopping"
+							style="padding: 10px;" type="button" value="장바구니가기">
+					</div>
+				</div>
+			</aside>
+		</div>
+	</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,637 @@
+  :root{
+    /* color */
+    --white-color:#f4f4f4;
+    --dark-green-color:#00701a;
+    --light-pink-color: #f48fb1;
+    /* size */
+    --small-size:12px;
+    --big-size:20px;
+    /* font s */
+    --font-large:72px;
+    --font-medium:40px;
+    --font-small:20px;
+    --font-micro:12px;
+    /* margim */
+    --small-margin:5px;
+    --large-margin:120px;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 
+    'Noto Sans JP', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}  
+img {
+    max-width: 100%;
+    vertical-align: middle;
+    display: inline-block;
+}
+button{
+    background-color: var(--light-pink-color);
+    border-style: none;
+    padding: 20px;
+    border-radius: 20px;
+}
+/* info */
+.info .green{
+    background-color: var(--dark-green-color);
+    padding-top: 36px;
+    padding-right:120px ;
+    padding-left: 120px;
+
+}
+.info .green .head{
+    display: flex;
+    border-bottom: 1px solid  rgba(242, 210, 219, 0.1) ;
+    margin-left: 12px;
+    justify-content:space-between;
+    padding-bottom: 30px;
+
+}
+.info .green .head .menu{
+    color: var(--light-pink-color);
+    font-size: 22px;
+    display: flex;
+}
+.info .green .head .menu li{
+    margin:20px;
+    color: var(--light-pink-color);
+    font-size: var(--font-small);
+    padding: 8px 12px;
+    align-items: center;
+
+}
+.info .green .head .menu a{
+    color: var(--light-pink-color);
+}
+.info .green .head .menu a:hover{
+color:var(--white-color);
+}
+.bttn{
+    background-color: var(--dark-green-color);
+    border: 1px solid grey;
+    padding: auto 30px;
+}
+
+.info .metadata{
+    padding:11px 0;
+    width: 60%;
+  
+}
+.info .metadata .name{
+    font-size: 72px;
+    color: var(--light-pink-color);
+}
+.info .metadata .des{
+    margin: 10px 0;
+    margin-bottom: 20x;
+    font-size: var(--font-medium);
+    color: var(--white-color);
+}
+.info .metadata .buttom{
+    margin-top: 36px;
+    margin-bottom: 65px;
+}
+.info .des1{
+    display: flex;
+   
+    
+}
+.info .des1 .desk {
+    display: flex;
+    margin: 60px 120px; 
+}
+.info .des1 .desk .item1,.item2,.item3{
+    margin-right: 92px;
+    display: flex;
+}   
+.info .des1 .desk .a,.b,.c {
+ align-items: baseline;
+ margin: 20px 20px 40px;;
+ font-size: var(--font-small);
+
+}
+.info .des1 .desk .hi{
+    position: relative;
+    bottom: 10px;
+}
+
+.info .des1 .desk .item2{
+    margin-right: 92px;
+}
+.info .des1 .desk .item3{
+    margin-right: 92px;
+}
+.info .des1 .we{
+    position: absolute;
+    top: 205px;
+    right:0%;
+}
+
+.info .des1 .are {
+    position: absolute;
+    top: 449px;
+    right: 21%;
+    transition: 1s;
+}
+.info .des1 .are:hover{
+    transform: perspective(300px) rotateX(180deg);
+}
+
+img.we:hover {
+        transition: all 0.5s;
+        transform:scaleX(1.5) ;
+    }    
+
+
+/* media (768px)*/
+@media(max-width:768px){
+    .info .green {
+        padding-top: 36px;
+        padding-right: 28px;
+        padding-left: 34px;
+    }
+    .info .green .head .menu{
+        display: none;   
+    }
+    .info .metadata .name {
+        font-size: 51px;
+    }
+    .info .metadata .des {
+        font-size: 24px;
+    }
+    .info .des1 .we {
+        width: 444px;
+        top: 185px;
+        right: 0%;
+    }
+    img.we:hover {
+        transition: all 0.5s;
+        transform: translateY(-150px);
+    }    
+    .info .des1 .are {
+        width: 100px;
+        top: 328px;
+        right: 23%;
+    }
+    .info .des1 .desk {
+        margin: 14px 24px;
+    }
+    .info .des1 .desk .hi {
+        bottom: 25px; 
+    }
+    .info .des1 .desk .item1,.item3 {
+        margin-right: 5px;
+    }
+    .info .des1 .desk .item2 {
+        margin-right: 40px;
+    }
+    span.c {
+        position: relative;
+        bottom: 14px;
+    }
+    .info .des1 .desk {
+        display: flex;
+        margin: 3px 22px;
+    }
+    .info .des1 .desk .a{
+        margin-right: 71px;
+    
+    }
+  
+    .info .b{
+        margin-right: 31px;
+
+    }
+}
+header .button{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: var(--light-pink-color);
+    position: fixed;
+    top: 50%;
+    right: 0%;
+    border-radius: 5px;
+}
+i.fab.fa-instagram {
+    font-size: 24px;
+    padding-bottom: 13px;
+}
+i.fab.fa-facebook-square {
+    font-size: 24px;
+}
+     /* info2 */
+.info2{
+    padding: 0 120px;
+    padding-bottom: 40px;
+}
+.info2 .des2{
+    padding-bottom: 40px;
+}
+
+.info2 .des2 .Question{
+    display: block;
+    margin-bottom: 30px;
+    color: var(--dark-green-color);
+    font-size: var(--font-medium);
+
+}
+.info2 .des2 .box{
+    display: flex;
+
+}
+/* info2 pink */
+.info2 .des2 .box .pink{
+    display: flex;
+    background-color: var(--light-pink-color);
+    flex-direction: column;
+    width: 50%;
+    background-color: var(--light-pink-color);
+    padding: 36px;
+    align-content: space-between;
+}
+.info2 .des2 .box .pink .info{
+    display: flex;
+    margin: 20px 0;
+    
+}
+.info2 .des2 .box .pink .info .name{
+    color: var(--dark-green-color);
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+.info2 .des2 .box .pink .info .des{
+    color: var(--white-color);
+}
+/* info2 green */
+.info2 .des2 .box .green{
+    display: flex;
+    width: 50%;
+    background-color: var(--dark-green-color);
+    padding: 36px;
+    flex-direction: column;
+    align-content: space-between;
+}
+.info2 .des2 .box .green .info{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 20px 0;
+    
+}
+.info2 .des2 .box .green .info li{
+    text-align: right;
+}
+.info2 .des2 .box .green .name{
+ color: #f48fb1;   
+ font-weight: bold;
+ margin: 7px;
+}
+.info2 .des2 .box .green .des{
+    color: var(--white-color);
+}
+.imgs{
+    padding: 30px;
+    display: flex;
+    align-items: center;
+} 
+/* zoumon */
+    .info2 .des2 a,.address .pink a{
+        border-radius: 54px;
+        color: var(--dark-green-color);
+        background-color: var(--light-pink-color);
+        background-image: url(https://ekokubki.pl/images/ico_cart.svg);
+        height: 60px;
+        background-position: 24% 51%;
+        background-size: 20px 20px;
+        padding: 20px 0;
+        background-repeat: no-repeat;
+        display: inline-flex;
+        justify-content: center;
+        padding-right: 34px;
+        padding-left: 60px;
+        position: relative;
+        left: 44%;
+        max-width: 100%;
+        bottom: 416px;
+        z-index: 3;
+        }
+    .info2 .des2 .cup1 {
+        position: absolute;
+        top: 130%;
+        left: 33%;
+        z-index: 1;
+    }
+@media(max-width:768px){
+    .info2 .des2 .Question{
+        display: flex;
+        justify-content: center;
+    }
+    .info2{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .info2 .des2 .zomow{
+      display: none;
+    }
+    .info2 .des2 .cup1{
+        display: none;
+    }
+    .info2 .des2 .pink img{
+        padding-left: 0;
+    }
+    .info2 .des2 .green img{
+        padding-right: 0px;
+    }
+}
+    /* fado */
+    .info2 .fado{
+        padding: 60px;
+        display: flex;
+        margin-bottom: 102px;
+
+    }
+    .info2 .fado .fadoi{
+        background-image: url(https://ekokubki.pl/images/wave-photo.jpg);
+        width:50%;
+
+        
+    }
+    .info2 .fado .fadodes{
+        margin-left: 50px ;
+    }
+
+.info2 .fado .fadoi {
+    background-image: url(https://ekokubki.pl/images/wave-photo.jpg);
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%;
+    height: 500px;
+}
+.info2 .fado .fadoi .sticker{
+    width: 20%;
+    position: relative;
+    left: 33px;
+}
+.info2 .fado .fadoi img.mark {
+    position: relative;
+    top: 44%;
+    left: 33%;
+}
+
+.info2 .fadodes .one {
+    font-size: 38px;
+    letter-spacing: -2px;
+    line-height: 48px;
+    padding-top:67px;
+}
+.info2 .fadodes .two
+{  display: block;
+    margin: 20px 0;
+}
+@media(max-width:768px){
+    .info2 .fado{
+        padding: 0 10px;
+        margin:100px 0;
+    }
+    .info2 .fado .fadoi{
+        width: 50%;
+    }
+}
+/*  heart*/
+.heart{
+    background-color: var(--dark-green-color);
+    display: flex;
+}
+.heart .heatbox {
+    padding: 0;
+    display: flex;
+    background-image: url(https://ekokubki.pl/images/zaufali-nam-background-image.png);
+    width: 50%;
+    justify-content: center;
+    background-position: 0% 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.imgname{
+    display: flex;
+}
+
+.heart .heatbox .name {
+    position: relative;
+    top: 43%;
+    left: 5%;
+    font-size: 34px;
+}
+/* 4box --none*/ 
+.heart .fourbox{
+    display: grid;
+    width: 50%;
+    height: 100%;
+    grid-template-columns: 50% 1fr;
+    grid-template-rows:  50% 1fr;
+}
+.heart .fourbox>div{
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid  rgba(242, 210, 219, 0.1);
+}
+
+
+@media(max-width:768px){
+    .heart .heatbox{
+        background-size: cover;
+    }
+
+}
+
+
+/* des3 */
+.des3{
+ height: 759px; 
+}
+.des3 .img {
+    background-color: darkgreen;
+    width: 50%;
+    display: flex;
+    margin-top: 10%;
+}
+.img .shake {
+    z-index: 2;
+    max-width: 100%;
+}
+
+img.picture {
+    position: relative;
+    right: 82%;
+    z-index: 1;
+}
+/* cup */
+.des3 .cup{
+    background-color: var(--light-pink-color);
+    width: 50%;
+    padding: 84px;
+    margin-bottom: 10%;
+}
+.cup img {
+    position: relative;
+    left: 70%;
+    bottom: 83px;
+}
+ul.name3 {
+    font-size: 30px;
+    color: var(--dark-green-color);
+    padding-bottom: 30px;
+    line-height: 1;
+}
+
+.des3 .cup .btn{
+    background-color: pink;
+}
+.des3 .meta {
+    position: relative;
+    bottom: 127px;
+}
+
+span.des {
+    color: var(--dark-green-color);
+    display: block;
+    padding-bottom: 18px;
+}
+@media(max-width:768px){
+    .des3 .img{
+        display: none;        
+    }
+    .des3 .cup{
+        height: 568px;  
+        width: 668px; 
+    }
+    .des3{
+        height: 500px;
+    }
+
+
+}
+/* class address */
+.address .pink{
+    background-color: var(--light-pink-color);
+    padding-top:100px ;
+    padding-left: 69px;
+    width: 70%;
+    padding-bottom: 108px;    
+}
+.address .pink .logo{
+    margin-bottom: 36px;
+}
+.address .pink .des{
+    font-size:40px;
+    color: var(--dark-green-color);
+}
+.address .pink .zomow {
+    position: relative;
+    top: 29px;
+    left: -6px;
+    background-color: pink;
+}
+img.greenleaf {
+    position: relative;
+    bottom: 405px;
+    left: 10%;
+}
+/* address */
+address{
+ background-color: var(--dark-green-color);
+ display: contents;
+}
+address img{
+    margin-right: 30px;
+}
+address{
+    background-color: var(--dark-green-color);
+    min-width: 454px;
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    bottom: 731px;
+    left: 59%;
+}
+address .call {
+    padding: 24px;
+    border-bottom: 1px solid green;
+    color: var(--light-pink-color);
+}
+address .message {
+    padding: 24px;
+    color: var(--light-pink-color);
+}
+@media(max-width:768px){
+    address{
+        bottom: 595px;
+    }
+     .address{
+        height: 428px;
+    }
+    .address .pink{
+        width: 100%;
+    }
+    img.greenleaf{
+        bottom: 281px;
+    }
+    .address .pink .des{
+        font-size:29px ;
+    }
+}
+/* footer */
+footer {
+    margin-left: 120px;
+    color: var(--dark-green-color);
+}
+.footer{
+ display: flex;
+ justify-content: space-between;
+}
+footer .Designer{
+    margin-right: 138px;
+}
+footer .QA{
+    display: flex;
+    justify-content: space-evenly;
+    box-sizing:  content-box;
+    width: 516px;
+}
+footer .meta{
+    font-size: 5px;
+    margin-top: 17px;
+    
+}
+@media(max-width:768px){
+
+    .footer{
+        flex-direction: column;
+        align-content: flex-end;
+        text-align: right;
+        width: 632px;
+        height: 200px;
+    }   
+    footer .QA{
+    flex-direction: column;
+    width: 632px;
+    height: 200px;
+    }
+    .Designer{
+        width: 632px;
+    }
+    footer .meta{
+        text-align: right;
+    }
+}
