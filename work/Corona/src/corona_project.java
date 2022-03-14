@@ -1,0 +1,68 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
+public class corona_project {
+	public static void main(String[] args) throws Exception {
+
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson"); /* URL */
+		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8")
+				+ "=PJgXs4FpAyoSQm3FnFxDCtIg1thkVBDIrn6DqPM38DFpD43CMzE%2BPisiMxns%2FZ6X2AbN%2FL0e0PZYrl0JVokqTA%3D%3D"); /*
+																															 * Service
+																															 * Key
+																															 */
+		urlBuilder
+				.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /* 페이지번호 */
+		urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "="
+				+ URLEncoder.encode("10", "UTF-8")); /* 한 페이지 결과 수 */
+		urlBuilder.append("&" + URLEncoder.encode("startCreateDt", "UTF-8") + "="
+				+ URLEncoder.encode("20220311", "UTF-8")); /* 검색할 생성일 범위의 시작 */
+		urlBuilder.append("&" + URLEncoder.encode("endCreateDt", "UTF-8") + "="
+				+ URLEncoder.encode("20220311", "UTF-8")); /* 검색할 생성일 범위의 종료 */
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + conn.getResponseCode());
+
+		DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = builderFactory.newDocumentBuilder();
+		Document document = builder.parse(urlBuilder.toString());
+
+		document.normalize();
+		// GUBUN,DEATH_CNT,INC_DEC,DEF_CNT
+
+		NodeList tagList = document.getElementsByTagName("item");
+		for (int i = 0; i < tagList.getLength(); i++) {
+			NodeList list = tagList.item(i).getChildNodes();
+			for (int j = 0; j < list.getLength(); j++) {
+				switch (list.item(j).getNodeName()) {
+				//사망자 수
+				case "deathCnt":
+				//지역명
+				case "gubun":
+				//전일대비 증감 수
+				case "incDec":
+				//확진자 수
+				case "defCnt":
+					System.out.println(list.item(j).getNodeName() + " - " + list.item(j).getTextContent()); // 태그명 - 내용
+				}
+			}
+			System.out.println("----------------------------");
+
+		}
+
+	}
+}

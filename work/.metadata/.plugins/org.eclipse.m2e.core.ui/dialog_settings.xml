@@ -2,11 +2,19 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="Corona_Excell"/>
+			<item value="ExellLoad"/>
+			<item value="Corona"/>
+			<item value="NaverSearch"/>
 			<item value="PaPaGo"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="Corona_Excell"/>
+			<item value="ExellLoad"/>
+			<item value="Corona"/>
+			<item value="NaverSearch"/>
 			<item value="PaPaGo"/>
 		</list>
 		<list key="version">
